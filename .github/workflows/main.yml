@@ -10,7 +10,17 @@ defaults:
     shell: bash
 
 jobs:
-  build:
+  build_image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image image
+        uses: docker/build-push-action@v2.4.0
+        with:
+          push: false
+
+  run_container:
     runs-on: ubuntu-latest
     container: unityci/editor:2020.3.14f1-base-0.14.0
     steps:
